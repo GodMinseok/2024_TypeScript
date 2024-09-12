@@ -41,11 +41,11 @@ export default () => {
       <Title>회원 가입하기</Title>
       <Form>
         <SubTitle>이름*</SubTitle>
-        <Input />
+        <Input placeholder="예) Minseok" />
         <SubTitle>이메일*</SubTitle>
-        <Input />
+        <Input placeholder="에) Minseok@naver.com" />
         <SubTitle>비밀번호*</SubTitle>
-        <Input />
+        <Input placeholder="예) 6자리 이상 입력하세요." />
         <Input />
       </Form>
     </Container>
