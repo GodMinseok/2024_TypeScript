@@ -89,6 +89,7 @@ export default () => {
           onChange={onChange}
           type="text"
           placeholder="예) Minseok"
+          value={nickName}
         />
         <SubTitle>이메일*</SubTitle>
         <Input
@@ -96,6 +97,7 @@ export default () => {
           onChange={onChange}
           type="email"
           placeholder="에) Minseok@naver.com"
+          value={email}
         />
         <SubTitle>비밀번호*</SubTitle>
         <Input
@@ -103,6 +105,7 @@ export default () => {
           onChange={onChange}
           type="password"
           placeholder="예) 6자리 이상 입력하세요."
+          value={password}
         />
         <Input name="submit" type="submit" value={"가입하기"} />
       </Form>
