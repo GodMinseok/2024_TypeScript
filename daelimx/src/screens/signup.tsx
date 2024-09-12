@@ -13,6 +13,7 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-size: 25px;
+  font-weight: bold;
 `;
 // 로고 이미지
 // Text 입력 필드 구역
