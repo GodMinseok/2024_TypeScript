@@ -48,9 +48,9 @@ export default () => {
   // 회원 가입을 위한 Process 작성
 
   // A. 입력한 회원 정보를 저장(State) -- useState Hook
-  const [nickName, setNickName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [nickName, setNickName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   // B. 입력한 회원 정보를 가공/수정한다.
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,13 +63,13 @@ export default () => {
     // 1. 입력한 정보를 분류(닉네임, 이메일, 비번)
     switch (name) {
       case "nickname":
-        console.log("Name:", value);
+        setNickName(value);
         break;
       case "email":
-        console.log("Email:", value);
+        setEmail(value);
         break;
       case "password":
-        console.log("PW:", value);
+        setPassword(value);
         break;
     }
     // Goal: 각각 정보를 State(닉네임, 이메일, 비번) 저장
