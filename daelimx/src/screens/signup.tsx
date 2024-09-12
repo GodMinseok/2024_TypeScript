@@ -11,7 +11,9 @@ const Container = styled.div`
   padding: 30px;
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  font-size: 25px;
+`;
 // 로고 이미지
 // Text 입력 필드 구역
 const Form = styled.form`
@@ -28,15 +30,20 @@ const Input = styled.input`
   padding: 5px 20px;
 `;
 
-const SubTitle = styled.p``;
+const SubTitle = styled.p`
+  font-size: 9px;
+`;
 
 export default () => {
   return (
     <Container>
-      <Title>Signup Page.</Title>
+      <Title>회원 가입하기</Title>
       <Form>
+        <SubTitle>이름*</SubTitle>
         <Input />
+        <SubTitle>이메일*</SubTitle>
         <Input />
+        <SubTitle>비밀번호*</SubTitle>
         <Input />
         <Input />
       </Form>
