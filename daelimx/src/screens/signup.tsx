@@ -29,6 +29,13 @@ const Input = styled.input`
   border-radius: 5px;
   border: none;
   padding: 5px 20px;
+  &::plachoder {
+    font-size: 10px;
+  }
+  &[type="submit"] {
+    cursor: pointer;
+    margin-top: 20px;
+  }
 `;
 
 const SubTitle = styled.p`
