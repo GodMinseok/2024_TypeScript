@@ -43,6 +43,15 @@ const Input = styled.input`
 const SubTitle = styled.p`
   font-size: 9px;
 `;
+// 회원가입 버튼 컴포넌트
+const SignupBtn = styled.div`
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #2c6ee7;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+`;
 
 export default () => {
   // 회원 가입을 위한 Process 작성
@@ -76,7 +85,9 @@ export default () => {
   };
 
   // C. 가입버튼을 누른 경우, 입력한 회원 정보를 SERVER에 전달 > 회원가입 처리
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    console.log("가입하기 ");
+  };
 
   // Page Design Rndering (화면 디자인)
   return (
@@ -107,7 +118,7 @@ export default () => {
           placeholder="예) 6자리 이상 입력하세요."
           value={password}
         />
-        <Input name="submit" type="submit" value={"가입하기"} />
+        <SignupBtn>가입하기</SignupBtn>
       </Form>
     </Container>
   );
