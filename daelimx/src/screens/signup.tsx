@@ -64,6 +64,7 @@ export default () => {
   const [nickName, setNickName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   // B. 입력한 회원 정보를 가공/수정한다.
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,14 +93,26 @@ export default () => {
   const onSubmit = () => {
     console.log("가입하기 버튼 눌림");
     // A. 방어코드 -- ex) 입력을 안 한 경우..
+    if (nickName === "" || email === "" || password === "") {
+      alert("회원 정보를 모두 입력해주세요.");
+    }
 
     // B. 회원가입 프로세스 진행
-    // b-1. 로딩 start
-    // b-2. 회원 정보를 모아서 서버에 전달(API)
-    // b-3. 서버에서.. 가입 진행..
-    // b-4. 가입완료> 1. 로그인 화면 or 2. 자동 로그인>home
-    // C. 예외적인 경우(Error) ..   중복 계정, 잘못된 정보
-    // c-1. 에러 메세지 출력
+    try {
+      // b-1. 로딩 start
+      setLoading(true);
+
+      // b-2. 회원 정보를 모아서 서버에 전달(API)를 모아서 서버(Firebase)
+
+      // b-3. 서버에서.. 가입 진행..
+      // b-4. 가입완료> 1. 로그인 화면 or 2. 자동 로그인>home
+    } catch (error) {
+      // C. 예외적인 경우(Error) ..   중복 계정, 잘못된 정보
+      // c-1. 에러 메세지 출력
+    } finally {
+    }
+
+    // D. 로딩 exit..
   };
 
   // Page Design Rndering (화면 디자인)
