@@ -133,7 +133,7 @@ export default () => {
       // c-0. 만일 Firebase 관련 Error인 경우에만
       if (error instanceof FirebaseError) {
         // c-1. 에러 메세지 출력
-        setError(error.message);
+        setError(error.code);
       }
     } finally {
     }
@@ -171,8 +171,21 @@ export default () => {
           value={password}
         />
         <SignupBtn onClick={onSubmit}>가입하기</SignupBtn>
-        <ErrorMsg>에러 메세지</ErrorMsg>
+        <ErrorMsg>{errorMsgGroup[error]}</ErrorMsg>
       </Form>
     </Container>
   );
 };
+
+interface errorMsgGroupType {
+  [key: string]: string;
+}
+// 1. 동일한 이메일
+// 2. 비밀번호가 6자리 미만
+// 3. 이메일, 비번 잘못 입력
+const errorMsgGroup: errorMsgGroupType = {
+  "auth/email-already-in-use": "이미 존재하는 계정입니다.",
+  "auth/weak-password": "비밀번호를 6자리 이상 입력해주세요.",
+  "auth/invalid-email": "잘못된 이메일 혹은 비밀번호입니다.",
+};
+// errorMsgGroup["auth/email-already-in-use"]
