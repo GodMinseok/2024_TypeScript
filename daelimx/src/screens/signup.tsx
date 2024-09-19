@@ -48,9 +48,13 @@ const SignupBtn = styled.div`
   padding: 10px 20px;
   border-radius: 20px;
   background-color: #2c6ee7;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 10px;
+  font-weight: 600;
   color: white;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 20px;
 `;
 
 export default () => {
@@ -86,7 +90,16 @@ export default () => {
 
   // C. 가입버튼을 누른 경우, 입력한 회원 정보를 SERVER에 전달 > 회원가입 처리
   const onSubmit = () => {
-    console.log("가입하기 ");
+    console.log("가입하기 버튼 눌림");
+    // A. 방어코드 -- ex) 입력을 안 한 경우..
+
+    // B. 회원가입 프로세스 진행
+    // b-1. 로딩 start
+    // b-2. 회원 정보를 모아서 서버에 전달(API)
+    // b-3. 서버에서.. 가입 진행..
+    // b-4. 가입완료> 1. 로그인 화면 or 2. 자동 로그인>home
+    // C. 예외적인 경우(Error) ..   중복 계정, 잘못된 정보
+    // c-1. 에러 메세지 출력
   };
 
   // Page Design Rndering (화면 디자인)
@@ -118,7 +131,7 @@ export default () => {
           placeholder="예) 6자리 이상 입력하세요."
           value={password}
         />
-        <SignupBtn>가입하기</SignupBtn>
+        <SignupBtn onClick={onSubmit}>가입하기</SignupBtn>
       </Form>
     </Container>
   );
