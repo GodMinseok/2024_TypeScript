@@ -1,7 +1,10 @@
 // Signup page를 구성
 
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
 import styled from "styled-components";
+import { auth } from "../firebaseConfig";
+import { FirebaseError } from "firebase/app";
 
 const Container = styled.div`
   display: flex;
@@ -57,6 +60,14 @@ const SignupBtn = styled.div`
   margin-top: 20px;
 `;
 
+const ErrorMsg = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 5px 0px;
+  color: tomato;
+  font-weight: bold;
+`;
+
 export default () => {
   // 회원 가입을 위한 Process 작성
 
@@ -65,6 +76,7 @@ export default () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   // B. 입력한 회원 정보를 가공/수정한다.
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,7 +102,7 @@ export default () => {
   };
 
   // C. 가입버튼을 누른 경우, 입력한 회원 정보를 SERVER에 전달 > 회원가입 처리
-  const onSubmit = () => {
+  const onSubmit = async () => {
     console.log("가입하기 버튼 눌림");
     // A. 방어코드 -- ex) 입력을 안 한 경우..
     if (nickName === "" || email === "" || password === "") {
@@ -102,13 +114,27 @@ export default () => {
       // b-1. 로딩 start
       setLoading(true);
 
-      // b-2. 회원 정보를 모아서 서버에 전달(API)를 모아서 서버(Firebase)
+      // b-2. 회원 정보(닉네임, 이메일, 암호)를 모아서 서버(Firebase)에 전달(API)
+      // 가입 완료 될 때 까지만 기다려 -> await - async와 세트로 사용됨
+      const credential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      // b-2-1. 유저의 닉네임 UPDate
+      await updateProfile(credential.user, {
+        displayName: nickName,
+      });
 
       // b-3. 서버에서.. 가입 진행..
       // b-4. 가입완료> 1. 로그인 화면 or 2. 자동 로그인>home
     } catch (error) {
       // C. 예외적인 경우(Error) ..   중복 계정, 잘못된 정보
-      // c-1. 에러 메세지 출력
+      // c-0. 만일 Firebase 관련 Error인 경우에만
+      if (error instanceof FirebaseError) {
+        // c-1. 에러 메세지 출력
+        setError(error.message);
+      }
     } finally {
     }
 
@@ -145,6 +171,7 @@ export default () => {
           value={password}
         />
         <SignupBtn onClick={onSubmit}>가입하기</SignupBtn>
+        <ErrorMsg>에러 메세지</ErrorMsg>
       </Form>
     </Container>
   );
