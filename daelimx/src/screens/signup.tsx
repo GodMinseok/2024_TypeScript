@@ -139,6 +139,8 @@ export default () => {
     }
 
     // D. 로딩 exit..
+    setLoading(false);
+    // always 에러가 나든 안 나든 실행
   };
 
   // Page Design Rndering (화면 디자인)
@@ -170,7 +172,9 @@ export default () => {
           placeholder="예) 6자리 이상 입력하세요."
           value={password}
         />
-        <SignupBtn onClick={onSubmit}>가입하기</SignupBtn>
+        <SignupBtn onClick={loading ? undefined : onSubmit}>
+          {1 + 2 == 2 ? "로딩 중..." : "가입하기"}
+        </SignupBtn>
         <ErrorMsg>{errorMsgGroup[error]}</ErrorMsg>
       </Form>
     </Container>
