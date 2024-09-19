@@ -5,6 +5,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { auth } from "../firebaseConfig";
 import { FirebaseError } from "firebase/app";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -70,6 +71,8 @@ const ErrorMsg = styled.div`
 
 export default () => {
   // 회원 가입을 위한 Process 작성
+  // Hook 생성: 페이지 이동을 위한
+  const navi = useNavigate();
 
   // A. 입력한 회원 정보를 저장(State) -- useState Hook
   const [nickName, setNickName] = useState<string>("");
@@ -128,6 +131,7 @@ export default () => {
 
       // b-3. 서버에서.. 가입 진행..
       // b-4. 가입완료> 1. 로그인 화면 or 2. 자동 로그인>home
+      navi("/");
     } catch (error) {
       // C. 예외적인 경우(Error) ..   중복 계정, 잘못된 정보
       // c-0. 만일 Firebase 관련 Error인 경우에만
