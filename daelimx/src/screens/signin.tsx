@@ -31,8 +31,8 @@ const Title = styled.h1`
 
 // 로고 이미지
 const LogoImg = styled.img`
-  width: 100px;
-  max-width: 350px;
+  width: 100%;
+  max-width: 300px;
   height: auto;
 `;
 
