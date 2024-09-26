@@ -5,7 +5,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { auth } from "../firebaseConfig";
 import { FirebaseError } from "firebase/app";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -22,6 +22,11 @@ const Title = styled.h1`
 `;
 
 // 로고 이미지
+const LogoImg = styled.img`
+  width: 300px;
+  height: 150px;
+`;
+
 // Text 입력 필드 구역
 const Form = styled.form`
   margin-top: 30px;
@@ -69,6 +74,16 @@ const ErrorMsg = styled.div`
   font-weight: bold;
 `;
 
+// 로그인 페이지로 이동 안내
+const Guide = styled.span`
+  font-size: 10px;
+  text-align: center;
+  a {
+    color: #389ef8;
+    margin-left: 5px;
+  }
+`;
+
 export default () => {
   // 회원 가입을 위한 Process 작성
   // Hook 생성: 페이지 이동을 위한
@@ -108,6 +123,7 @@ export default () => {
   const onSubmit = async () => {
     console.log("가입하기 버튼 눌림");
     // A. 방어코드 -- ex) 입력을 안 한 경우..
+    if (loading) return;
     if (nickName === "" || email === "" || password === "") {
       alert("회원 정보를 모두 입력해주세요.");
     }
@@ -150,7 +166,8 @@ export default () => {
   // Page Design Rndering (화면 디자인)
   return (
     <Container>
-      <Title>회원 가입하기</Title>
+      <LogoImg src={`${process.env.PUBLIC_URL}/DaelimX_Title.png`} />
+      {/* <Title>회원 가입하기</Title> */}
       <Form>
         <SubTitle>이름*</SubTitle>
         <Input
@@ -180,6 +197,10 @@ export default () => {
           {1 + 2 == 2 ? "로딩 중..." : "가입하기"}
         </SignupBtn>
         <ErrorMsg>{errorMsgGroup[error]}</ErrorMsg>
+        <Guide>
+          계정이 이미 있으신가요?
+          <Link to={"/signin"}>로그인</Link>
+        </Guide>
       </Form>
     </Container>
   );
