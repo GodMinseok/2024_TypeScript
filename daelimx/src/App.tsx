@@ -8,6 +8,7 @@ import reset from "styled-reset";
 import { useEffect, useState } from "react";
 import { auth } from "./firebaseConfig";
 import LoadingScreen from "./screens/loading-screen";
+import ProtectedRouter from "./components/protected-router";
 
 // React-Router-Dom 을 활용해 사이트의 page 관리
 // - Page : home, progile, signin, signup
@@ -18,12 +19,20 @@ const router = createBrowserRouter([
       {
         // home
         path: "",
-        element: <Home />,
+        element: (
+          <ProtectedRouter>
+            <Home />
+          </ProtectedRouter>
+        ),
       },
       {
         // profile
         path: "profile",
-        element: <Profile />,
+        element: (
+          <ProtectedRouter>
+            <Profile />
+          </ProtectedRouter>
+        ),
       },
     ],
   },
