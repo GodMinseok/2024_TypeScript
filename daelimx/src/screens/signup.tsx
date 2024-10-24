@@ -8,44 +8,46 @@ import { FirebaseError } from "firebase/app";
 import { Link, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
-  display: flex;
+  display: flex; // Flexbox로 자식 요소들을 배치
   flex-direction: column; // 세로 배치
-  align-items: center;
-  width: 80%;
-  max-width: 500px;
-  padding: 30px;
+  align-items: center; // 자식 요소들을 가로축에서 중앙 정렬
+  width: 80%; // 화면 너비의 80% 사용
+  max-width: 500px; // 최대 너비를 500px로 제한
+  padding: 30px; // 내부 여백 30px 추가
 `;
 
 const Title = styled.h1`
-  font-size: 25px;
-  font-weight: bold;
+  font-size: 25px; // 글자 크기 25px 설정
+  font-weight: bold; // 글자 두껍게 표시 (bold)
 `;
 
 // 로고 이미지
 const LogoImg = styled.img`
-  width: 300px;
-  height: 150px;
+  width: 300px; // 이미지 가로 크기 300px
+  height: 150px; // 이미지 세로 크기 150px
 `;
 
 // Text 입력 필드 구역
 const Form = styled.form`
-  margin-top: 30px;
+  margin-top: 30px; // 폼과 위 요소 사이에 30px 간격 추가
   gap: 10px; // 칸 마다 간격
-  display: flex;
-  flex-direction: column;
+  display: flex; // Flexbox로 내부 요소들 배치
+  flex-direction: column; // 세로 방향으로 요소 배치
 `;
 
 // Text 입력칸
 const Input = styled.input`
-  border-radius: 5px;
-  border: none;
-  padding: 5px 20px;
+  border-radius: 5px; // 테두리 모서리를 둥글게(5px) 처리
+  border: none; // 테두리 제거
+  padding: 5px 20px; // 세로로 5px, 가로로 20px 여백 추가
   &::plachoder {
-    font-size: 10px;
+    // 입력칸 placeholder(힌트 텍스트) 스타일
+    font-size: 10px; // placeholder의 글자 크기 10px로 설정
   }
   &[type="submit"] {
-    cursor: pointer;
-    margin-top: 20px;
+    // submit 버튼에만 적용되는 스타일
+    cursor: pointer; // 마우스를 올릴 때 포인터 모양으로 변경
+    margin-top: 20px; // 위 요소와 20px 간격 추가
   }
 `;
 
@@ -56,19 +58,19 @@ const SubTitle = styled.p`
 const SignupBtn = styled.div`
   padding: 10px 20px;
   border-radius: 20px;
-  background-color: #2c6ee7;
+  background-color: #0d2053;
   font-size: 10px;
   font-weight: 600;
-  color: white;
+  color: white; // 글자 색상을 흰색으로 설정
   display: flex;
-  justify-content: center;
+  justify-content: center; // 버튼 내 텍스트를 가로축 중앙 정렬
   cursor: pointer;
   margin-top: 20px;
 `;
 
 const ErrorMsg = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: center; // 가로축 중앙 정렬
   margin: 5px 0px;
   color: tomato;
   font-weight: bold;
@@ -77,8 +79,9 @@ const ErrorMsg = styled.div`
 // 로그인 페이지로 이동 안내
 const Guide = styled.span`
   font-size: 10px;
-  text-align: center;
+  text-align: center; // 텍스트를 중앙 정렬
   a {
+    // 내부의 링크(<a>) 스타일 설정
     color: #389ef8;
     margin-left: 5px;
   }
@@ -166,7 +169,7 @@ export default () => {
   // Page Design Rndering (화면 디자인)
   return (
     <Container>
-      <LogoImg src={`${process.env.PUBLIC_URL}/DaelimX_Title.png`} />
+      <LogoImg src={`${process.env.PUBLIC_URL}/LOTTE_Title.png`} />
       {/* <Title>회원 가입하기</Title> */}
       <Form>
         <SubTitle>이름*</SubTitle>

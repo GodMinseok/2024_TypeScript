@@ -23,10 +23,12 @@ const Container = styled.div`
   }
 `;
 
+// 타이틀 스타일
 const Title = styled.h1`
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 20px;
+  color: #0d2053;
 `;
 
 // 로고 이미지
@@ -65,10 +67,10 @@ const SubTitle = styled.p`
 const SigninBtn = styled.div`
   padding: 10px 20px;
   border-radius: 20px;
-  background-color: #ffffff;
+  background-color: #0d2053;
   font-size: 10px;
   font-weight: 600;
-  color: #000000;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -187,9 +189,9 @@ export default () => {
   // Page Design Rndering (화면 디자인)
   return (
     <Container>
-      <LogoImg src={`${process.env.PUBLIC_URL}/DaelimX_Title.png`} />
+      <LogoImg src={`${process.env.PUBLIC_URL}/LOTTE_Title.png`} />
       <Form>
-        <Title>아스날 유로파를 향해</Title>
+        <Title>롯데 자이언츠, 투혼 투지</Title>
         <SubTitle>이메일*</SubTitle>
         <Input
           name="email"

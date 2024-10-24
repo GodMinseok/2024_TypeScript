@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import Home from "./screens/home";
 import Profile from "./screens/profile";
@@ -9,30 +9,28 @@ import { useEffect, useState } from "react";
 import { auth } from "./firebaseConfig";
 import LoadingScreen from "./screens/loading-screen";
 import ProtectedRouter from "./components/protected-router";
+import Layout from "./screens/layout";
 
 // React-Router-Dom 을 활용해 사이트의 page 관리
 // - Page : home, progile, signin, signup
 const router = createBrowserRouter([
   {
     path: "/",
+    element: (
+      <ProtectedRouter>
+        <Layout />
+      </ProtectedRouter>
+    ),
     children: [
       {
         // home
         path: "",
-        element: (
-          <ProtectedRouter>
-            <Home />
-          </ProtectedRouter>
-        ),
+        element: <Home />,
       },
       {
         // profile
         path: "profile",
-        element: (
-          <ProtectedRouter>
-            <Profile />
-          </ProtectedRouter>
-        ),
+        element: <Home />,
       },
     ],
   },
@@ -101,7 +99,7 @@ export default App;
 const GlobalStyle = createGlobalStyle`
 ${reset}
 body{
-  background-color: black;
+  background-color: #97d4e5;
   color: white;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
