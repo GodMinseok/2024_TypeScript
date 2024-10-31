@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import InputPost from "../components/InputPost";
 
 const Container = styled.div``;
 const Title = styled.h1``;
@@ -23,7 +24,7 @@ export default () => {
   return (
     <Container>
       <Title>Home Page.</Title>
-      <button onClick={signOut}>로그아웃</button>
+      <InputPost />
     </Container>
   );
 };

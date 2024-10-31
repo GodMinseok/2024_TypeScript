@@ -1,5 +1,6 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { auth } from "../firebaseConfig";
 
 const Container = styled.div`
   display: grid;
@@ -40,6 +41,21 @@ const BottomMenu = styled.div`
 `;
 
 export default () => {
+  const navi = useNavigate();
+  // Page Logic
+  // 로그아웃 함수
+  const signOut = async () => {
+    // +확인 절차
+    const isOK = window.confirm("정말 로그아웃을 하실 건가요?");
+    if (isOK) {
+      // 로그아웃뒤에 -> 로그인 화면으로 이동
+      await auth.signOut();
+      navi("/signin");
+    }
+  };
+
+  // Page Design Rendering
+
   return (
     <Container>
       <Navigator>
@@ -85,7 +101,8 @@ export default () => {
           </MenuItem>
         </Link>
         <BottomMenu>
-          <MenuItem>
+          {/* 로그아웃 메뉴 */}
+          <MenuItem onClick={signOut}>
             <svg
               className="w-6 h-6 text-gray-800 dark:text-white"
               aria-hidden="true"
