@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import InputPost from "../components/InputPost";
+import Timeline from "../components/Timeline";
 
 const Container = styled.div``;
 const Title = styled.h1``;
@@ -25,6 +26,7 @@ export default () => {
     <Container>
       <Title>Home Page.</Title>
       <InputPost />
+      <Timeline />
     </Container>
   );
 };
