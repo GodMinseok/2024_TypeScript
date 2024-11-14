@@ -51,10 +51,11 @@ export default () => {
       {posts.map((post) => {
         return (
           <Post
-            userId={post.userId}
-            createdAt={post.createdAt}
-            nickname={post.nickname}
-            post={post.post}
+            {...post} // Spread Operator
+            // userId={post.userId}
+            // createdAt={post.createdAt}
+            // nickname={post.nickname}
+            // post={post.post}
           />
         );
       })}
