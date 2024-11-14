@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { firestore } from "../firebaseConfig";
 import { Ipost } from "../types/post-type";
+import Post from "./Post";
 
 const Container = styled.div``;
 
@@ -49,9 +50,12 @@ export default () => {
     <Container>
       {posts.map((post) => {
         return (
-          <div>
-            <h1>{post.post}</h1>
-          </div>
+          <Post
+            userId={post.userId}
+            createdAt={post.createdAt}
+            nickname={post.nickname}
+            post={post.post}
+          />
         );
       })}
     </Container>
