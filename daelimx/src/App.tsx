@@ -10,6 +10,7 @@ import { auth } from "./firebaseConfig";
 import LoadingScreen from "./screens/loading-screen";
 import ProtectedRouter from "./components/protected-router";
 import Layout from "./screens/layout";
+import "moment/locale/ko";
 
 // React-Router-Dom 을 활용해 사이트의 page 관리
 // - Page : home, progile, signin, signup

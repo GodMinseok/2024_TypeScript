@@ -11,7 +11,17 @@ const Container = styled.div`
   border: 1px solid #353535;
   padding: 10px 15px;
 `;
+const Wrapper = styled.div`
+  display: flex;
+  gap: 5px;
+`;
 const ProfileArea = styled.div``;
+const ProfileImg = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+`;
 const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,7 +34,7 @@ const UserInfo = styled.div`
 `;
 const UserEmail = styled.div`
   font-size: 10px;
-  color: #545454;
+  color: #454ed1;
 `;
 
 const UserName = styled.div`
@@ -39,10 +49,34 @@ const CreateTime = styled.div`
   color: #575757;
 `;
 
-export default ({ userId, createdAt, nickname, post }: Ipost) => {
+const Footer = styled.div``;
+const ItemBox = styled.div``;
+const ItemIcon = styled.span``;
+const ItemText = styled.span``;
+
+type ItemIcon = "like" | "view" | "comment";
+type IItem = { type: string; num: number };
+
+const Item = ({ type, num }: IItem) => {
+  return (
+    <ItemBox>
+      <ItemIcon />
+      <ItemText>100</ItemText>
+    </ItemBox>
+  );
+};
+
+// 기본 프로필 이미지
+const defaultProfileImg =
+  "https://static-00.iconduck.com/assets.00/profile-circle-icon-2048x2048-cqe5466q.png";
+
+export default ({ userId, createdAt, nickname, post, photoUrl }: Ipost) => {
   return (
     <Container>
-      <ProfileArea>
+      <Wrapper>
+        <ProfileArea>
+          <ProfileImg src={photoUrl || defaultProfileImg} />
+        </ProfileArea>
         <Content>
           <UserInfo>
             <UserName>{nickname}</UserName>
@@ -52,9 +86,13 @@ export default ({ userId, createdAt, nickname, post }: Ipost) => {
           </UserInfo>
           <PostText>{post}</PostText>
           <CreateTime>{moment(createdAt).fromNow()}</CreateTime>
-          <CreateTime>{createdAt}</CreateTime>
         </Content>
-      </ProfileArea>
+      </Wrapper>
+      <Footer>
+        <Item type="like" num={83} />
+        <Item type="view" num={2383} />
+        <Item type="comment" num={12} />
+      </Footer>
     </Container>
   );
 };
