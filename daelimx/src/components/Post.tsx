@@ -27,6 +27,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
 `;
 const UserInfo = styled.div`
   display: flex;
@@ -56,11 +57,32 @@ const Footer = styled.div`
   margin: 10px 0px;
 `;
 
+const Topbar = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const DeleteBtn = styled.button`
+  cursor: pointer;
+  font-size: 10px;
+`;
+
 // 기본 프로필 이미지
 const defaultProfileImg =
   "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg";
 
 export default ({ userId, createdAt, nickname, post, photoUrl }: Ipost) => {
+  // Logic
+  const onDelete = () => {
+    const isOk = window.confirm("삭제하시겠습니까?");
+
+    if (isOk) {
+      // Firebase로부터 해당 게시글 삭제
+      // 1. 내가 작성한 게시글인가?
+      // 2. 특정 게시글 ID를 통해 Firebase에서 doc삭제
+    }
+  };
+
+  // Page Design
   return (
     <Container>
       <Wrapper>
@@ -68,12 +90,15 @@ export default ({ userId, createdAt, nickname, post, photoUrl }: Ipost) => {
           <ProfileImg src={photoUrl || defaultProfileImg} />
         </ProfileArea>
         <Content>
-          <UserInfo>
-            <UserName>{nickname}</UserName>
-            {auth.currentUser && (
-              <UserEmail>{auth.currentUser.email}</UserEmail>
-            )}
-          </UserInfo>
+          <Topbar>
+            <UserInfo>
+              <UserName>{nickname}</UserName>
+              {auth.currentUser && (
+                <UserEmail>{auth.currentUser.email}</UserEmail>
+              )}
+            </UserInfo>
+            <DeleteBtn>삭제</DeleteBtn>
+          </Topbar>
           <PostText>{post}</PostText>
           <CreateTime>{moment(createdAt).fromNow()}</CreateTime>
         </Content>

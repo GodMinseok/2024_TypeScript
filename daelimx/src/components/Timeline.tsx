@@ -50,10 +50,10 @@ export default () => {
     // 서버(Firebase)에서 최신 게시글들 받아오기
     // fetchPosts();
 
+    // 1. Listener 활용해 실시간 상태 구독
+    let unsubscribe: Unsubscribe | null = null;
     // realtime 으로 서버에서 최신 게시글 갱신
     const fetchPostsRealtime = async () => {
-      // 1. Listener 활용해 실시간 상태 구독
-      let unsubscribe: Unsubscribe | null = null;
       // 2. SERVER DB에서 최신 게시글 가져올 Query
       const path = collection(firestore, "posts");
       const condition = orderBy("createdAt", "desc");
@@ -75,11 +75,14 @@ export default () => {
         // 4-2 최신 게시글 state에 저장
         setPosts(timelinePosts);
       });
-
-      // 6. Timeline 페이지 벗어날 시, 구독 종료
     };
 
     fetchPostsRealtime();
+
+    return () => {
+      // 6. Timeline 페이지 벗어날 시, 구독 종료
+      unsubscribe && unsubscribe();
+    };
   }, []);
 
   // Page Design
