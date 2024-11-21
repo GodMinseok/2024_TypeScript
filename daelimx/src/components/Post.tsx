@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { Ipost } from "../types/post-type";
 import { auth } from "../firebaseConfig";
 import moment from "moment";
+import Item from "./Post-ItemMenu";
 
 const Container = styled.div`
   border: 1px solid #353535;
@@ -50,21 +51,6 @@ const CreateTime = styled.div`
 `;
 
 const Footer = styled.div``;
-const ItemBox = styled.div``;
-const ItemIcon = styled.span``;
-const ItemText = styled.span``;
-
-type ItemIcon = "like" | "view" | "comment";
-type IItem = { type: string; num: number };
-
-const Item = ({ type, num }: IItem) => {
-  return (
-    <ItemBox>
-      <ItemIcon />
-      <ItemText>100</ItemText>
-    </ItemBox>
-  );
-};
 
 // 기본 프로필 이미지
 const defaultProfileImg =
