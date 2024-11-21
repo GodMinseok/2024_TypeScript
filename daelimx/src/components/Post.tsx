@@ -50,11 +50,15 @@ const CreateTime = styled.div`
   color: #575757;
 `;
 
-const Footer = styled.div``;
+const Footer = styled.div`
+  display: flex;
+  gap: 8px;
+  margin: 10px 0px;
+`;
 
 // 기본 프로필 이미지
 const defaultProfileImg =
-  "https://static-00.iconduck.com/assets.00/profile-circle-icon-2048x2048-cqe5466q.png";
+  "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg";
 
 export default ({ userId, createdAt, nickname, post, photoUrl }: Ipost) => {
   return (
