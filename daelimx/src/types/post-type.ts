@@ -5,4 +5,5 @@ export type Ipost = {
   userId: string;
   createdAt: number;
   photoUrl?: string;
+  id: string;
 };
