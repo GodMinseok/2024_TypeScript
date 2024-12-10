@@ -1,5 +1,3 @@
-// Signup page를 구성
-
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import styled from "styled-components";
@@ -10,17 +8,35 @@ import EmailSignUpButton from "../components/EmailSignUpButton";
 import GoogleSignUpButton from "../components/GoogleSignUpButton";
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   align-items: center;
+  justify-content: center;
+  background-image: url("${process.env.PUBLIC_URL}/cover3.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
   justify-items: center;
-  width: 80%;
+  width: 100%;
   padding: 30px;
-  /* 반응형 그리스 개수 변경 */
+  opacity: 0.9;
+  background-color: rgba(255, 255, 255, 0.8);
+
   @media (max-width: 500px) {
-    display: flex;
     flex-direction: column;
   }
+`;
+
+const LoginContainer = styled.div`
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  position: relative;
+  margin-right: 8%;
 `;
 
 // 타이틀 스타일
@@ -36,12 +52,15 @@ const LogoImg = styled.img`
   width: 100%;
   max-width: 300px;
   height: auto;
+  flex: 1; /* 최대한 화면을 채움 */
+  position: absolute;
+  top: 10px;
+  left: 10px;
 `;
 
 // Text 입력 필드 구역
 const Form = styled.form`
   margin-top: 30px;
-  gap: 10px; // 칸 마다 간격
   display: flex;
   flex-direction: column;
 `;
@@ -51,9 +70,6 @@ const Input = styled.input`
   border-radius: 5px;
   border: none;
   padding: 5px 20px;
-  &::plachoder {
-    font-size: 10px;
-  }
   &[type="submit"] {
     cursor: pointer;
     margin-top: 20px;
@@ -62,8 +78,11 @@ const Input = styled.input`
 
 const SubTitle = styled.p`
   font-size: 9px;
+  color: black;
+  margin-bottom: 10px;
+  margin-top: 10px;
 `;
-// 로그인 버튼 컴포넌트
+
 const SigninBtn = styled.div`
   padding: 10px 20px;
   border-radius: 20px;
@@ -104,12 +123,12 @@ const Divider = styled.p`
   display: flex;
   align-items: center;
   font-size: 10px;
-  color: #999494;
+  color: black;
   margin: 10px 0px;
   &::before,
   &::after {
     content: "";
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
     flex: 1;
     margin: 0px 5px;
   }
